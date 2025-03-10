@@ -3,7 +3,6 @@ import Hero from './components/Hero'
 import Generator from './components/Generator'
 import Workout from './components/Workout'
 import { generateWorkout } from './utils/functions'
-import Background from './components/Background'
 
 function App() {
   const [workout, setWorkout] = useState(null)
