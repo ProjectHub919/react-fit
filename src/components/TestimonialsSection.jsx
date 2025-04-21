@@ -26,7 +26,7 @@ export default function TestimonialsSection() {
       header="SUCCESS STORIES"
       title={["What", "USERS", "Say"]}
     >
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 py-14">
         {testimonials.map((testimonial, index) => (
           <div key={index} className="bg-slate-950 p-6 rounded-lg relative flex flex-col justify-between h-full">
             <div className="absolute -top-4 -left-4 w-8 h-8 bg-blue-500 flex items-center justify-center rounded-full">
