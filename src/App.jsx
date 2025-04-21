@@ -1,39 +1,28 @@
-import { useState } from 'react'
-import Hero from './components/Hero'
-import Generator from './components/Generator'
-import Workout from './components/Workout'
-import { generateWorkout } from './utils/functions'
+/*
+Main application component that handles routing and layout structure.
+Sets up the router with routes for homepage, exercise search, workout generator,
+and handles 404 pages. All routes are wrapped in the Layout component for
+consistent navigation and footer.
+ */
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Layout from './components/Layout'
+import HomePage from './pages/HomePage'
+import ExerciseSearch from './pages/ExerciseSearch'
+import GeneratorPage from './pages/GeneratorPage'
+import NotFound from './pages/NotFound'
 
 function App() {
-  const [workout, setWorkout] = useState(null)
-  const [poison, setPoison] = useState('individual')
-  const [muscles, setMuscles] = useState([])
-  const [goal, setGoal] = useState('strength_power')
-
-  function updateWorkout() {
-    if (muscles.length < 1) {
-      return
-    }
-    let newWorkout = generateWorkout({ poison, muscles, goal })
-    setWorkout(newWorkout)
-
-    window.location.href = '#workout'
-  }
-
   return (
-    <main className='min-h-screen flex flex-col bg-gradient-to-r from-slate-800 to-slate-950 text-white text-sm sm:text-base'>
-      <Hero />
-      <Generator
-        poison={poison}
-        setPoison={setPoison}
-        muscles={muscles}
-        setMuscles={setMuscles}
-        goal={goal}
-        setGoal={setGoal}
-        updateWorkout={updateWorkout}
-      />
-      {workout && (<Workout workout={workout} />)}
-    </main>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="/exercises" element={<ExerciseSearch />} />
+          <Route path="/generator" element={<GeneratorPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
+    </Router>
   )
 }
 
